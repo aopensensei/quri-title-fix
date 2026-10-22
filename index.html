@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Quri Title Fix - タイトル全文表示</title>
+<style>
+:root { font-family: system-ui, sans-serif; color-scheme: light dark; }
+body { max-width: 760px; margin: 0 auto; padding: 36px 20px; line-height: 1.8; }
+h1 { line-height: 1.25; }
+.bookmark { display: inline-block; border-radius: 8px; padding: 12px 18px; background: #1769aa; color: white; text-decoration: none; font-weight: bold; cursor: grab; }
+small { opacity: .78; }
+code { overflow-wrap: anywhere; }
+</style>
+</head>
+<body>
+<main>
+<h1>Quri Title Fix</h1>
+<p>Quriの教材タイルで省略される資料タイトルを、折り返して表示するための非公式ツールです。</p>
+<h2>登録する</h2>
+<p>次のリンクを<strong>Chromeのブックマークバーへドラッグ</strong>してください。クリックではなくドラッグして登録します。</p>
+<p><a class="bookmark" href="javascript:(()%20%3D%3E%20%7B%0A%20%20&#x27;use%20strict&#x27;%3B%0A%20%20if%20(location.hostname%20!%3D%3D%20&#x27;quri.omnicamp.us&#x27;)%20%7B%0A%20%20%20%20alert(&#x27;Quri%E3%81%AE%E3%83%9A%E3%83%BC%E3%82%B8%E3%81%A7%E5%AE%9F%E8%A1%8C%E3%81%97%E3%81%A6%E3%81%8F%E3%81%A0%E3%81%95%E3%81%84%E3%80%82&#x27;)%3B%0A%20%20%20%20return%3B%0A%20%20%7D%0A%20%20const%20id%20%3D%20&#x27;quri-title-fix-style&#x27;%3B%0A%20%20const%20existing%20%3D%20document.getElementById(id)%3B%0A%20%20if%20(existing)%20%7B%0A%20%20%20%20existing.remove()%3B%0A%20%20%20%20alert(&#x27;Quri%E3%82%BF%E3%82%A4%E3%83%88%E3%83%AB%E8%A1%A8%E7%A4%BA%E8%A3%9C%E6%AD%A3%E3%82%92%E8%A7%A3%E9%99%A4%E3%81%97%E3%81%BE%E3%81%97%E3%81%9F%E3%80%82&#x27;)%3B%0A%20%20%20%20return%3B%0A%20%20%7D%0A%20%20const%20selectors%20%3D%20%5B%5D%3B%0A%20%20const%20candidates%20%3D%20%5B...document.querySelectorAll(&#x27;button%2C%20a%5Bhref%5D&#x27;)%5D%0A%20%20%20%20.filter(el%20%3D%3E%20%7B%0A%20%20%20%20%20%20const%20text%20%3D%20el.innerText%20%7C%7C%20&#x27;&#x27;%3B%0A%20%20%20%20%20%20return%20%2F(%3F%3APDF%7CNotebook%7CNOTEBOOK%7C%E5%A4%96%E9%83%A8%E3%83%AA%E3%83%B3%E3%82%AF%7CLINK)%2F.test(text)%20%26%26%0A%20%20%20%20%20%20%20%20%20%20%20%20%20text.length%20%3C%20700%20%26%26%0A%20%20%20%20%20%20%20%20%20%20%20%20%20!el.getAttribute(&#x27;aria-label&#x27;)%3F.includes(&#x27;%E3%83%80%E3%82%A6%E3%83%B3%E3%83%AD%E3%83%BC%E3%83%89&#x27;)%3B%0A%20%20%20%20%7D)%3B%0A%20%20let%20count%20%3D%200%3B%0A%20%20const%20style%20%3D%20document.createElement(&#x27;style&#x27;)%3B%0A%20%20style.id%20%3D%20id%3B%0A%20%20style.textContent%20%3D%20%60%0A%20%20%20%20.quri-title-fix-target%2C%0A%20%20%20%20.quri-title-fix-target%20*%20%7B%0A%20%20%20%20%20%20text-overflow%3A%20clip%20!important%3B%0A%20%20%20%20%20%20-webkit-line-clamp%3A%20unset%20!important%3B%0A%20%20%20%20%20%20line-clamp%3A%20unset%20!important%3B%0A%20%20%20%20%20%20max-height%3A%20none%20!important%3B%0A%20%20%20%20%7D%0A%20%20%20%20.quri-title-fix-target%20%7B%20height%3A%20auto%20!important%3B%20min-height%3A%200%20!important%3B%20%7D%0A%20%20%20%20.quri-title-fix-target%20%3Ais(span%2C%20p%2C%20div%2C%20h2%2C%20h3%2C%20h4)%20%7B%0A%20%20%20%20%20%20white-space%3A%20normal%20!important%3B%0A%20%20%20%20%20%20overflow-wrap%3A%20anywhere%20!important%3B%0A%20%20%20%20%20%20overflow%3A%20visible%20!important%3B%0A%20%20%20%20%20%20min-width%3A%200%20!important%3B%0A%20%20%20%20%7D%0A%20%20%60%3B%0A%20%20for%20(const%20candidate%20of%20candidates)%20%7B%0A%20%20%20%20candidate.classList.add(&#x27;quri-title-fix-target&#x27;)%3B%0A%20%20%20%20count%2B%2B%3B%0A%20%20%7D%0A%20%20document.head.appendChild(style)%3B%0A%20%20alert(%60Quri%E3%81%AE%E8%B3%87%E6%96%99%E3%82%AB%E3%83%BC%E3%83%89%20%24%7Bcount%7D%20%E4%BB%B6%E3%81%AB%E3%82%BF%E3%82%A4%E3%83%88%E3%83%AB%E8%A1%A8%E7%A4%BA%E8%A3%9C%E6%AD%A3%E3%82%92%E9%81%A9%E7%94%A8%E3%81%97%E3%81%BE%E3%81%97%E3%81%9F%E3%80%82%5Cn%E5%86%8D%E5%BA%A6%E5%AE%9F%E8%A1%8C%E3%81%99%E3%82%8B%E3%81%A8%E8%A7%A3%E9%99%A4%E3%81%97%E3%81%BE%E3%81%99%E3%80%82%60)%3B%0A%7D)()%3B%0A" draggable="true">Quri タイトル全文表示</a></p>
+<p><small>ブックマークバーの表示は <code>Ctrl + Shift + B</code> で切り替えられます。</small></p>
+<h2>使う</h2>
+<ol><li>Quriにログインし、講義ページを開きます。</li><li>登録したブックマークをクリックします。</li><li>再度クリックすると補正を解除します。</li></ol>
+<h2>注意事項</h2>
+<p>Quri非公式です。対象は <code>quri.omnicamp.us</code> の教材カードです。Quri側の表示変更により動作しなくなる場合があります。外部送信は行いません。</p>
+<p>手動登録が必要な場合は、リポジトリの <code>quri-bookmarklet.txt</code> を利用してください。</p>
+</main>
+</body>
+</html>
